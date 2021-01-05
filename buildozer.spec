@@ -1,19 +1,19 @@
 [app]
 
 # (str) Title of your application
-title = BluetoothInputReader
+title = Thread Example
 
 # (str) Package name
-package.name = bluetoothreader
+package.name = threadex
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.hmerman6006.za.co
+package.domain = org.kivy
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,ttf,gif
+# source.include_exts = py,png,jpg,kv,atlas,ttf,gif
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,plyer,android,kivymd
+requirements = python3,kivy,android,kivymd
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -46,10 +46,10 @@ requirements = python3,kivy,plyer,android,kivymd
 #garden_requirements =
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/res/images/login-gif-11.gif
+# presplash.filename = %(source.dir)s/res/images/login-gif-11.gif
 
 # (str) Icon of the application
-icon.filename = %(source.dir)s/res/images/poolleaf_16619.png
+# icon.filename = %(source.dir)s/res/images/poolleaf_16619.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -82,10 +82,10 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-android.presplash_color = #FFFFFF
+android.presplash_color = olive
 
 # (list) Permissions
-android.permissions = INTERNET,BLUETOOTH,BLUETOOTH_ADMIN, ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION
+android.permissions = INTERNET
 
 # (int) Target Android API, should be as high as possible.
 android.api = 27
@@ -145,7 +145,7 @@ android.ndk = 19c
 
 # (list) List of Java files to add to the android project (can be java or a
 # directory containing the files)
-android.add_src = %(source.dir)s/res/ext_java/*.java
+# android.add_src = %(source.dir)s/res/ext_java/*.java
 
 # (list) Android AAR archives to add (currently works only with sdl2_gradle
 # bootstrap)

@@ -30,7 +30,7 @@ RootLay:
                 title: "Thread Test"
             MDLabel:
                 id: is_thread
-                text: "NOT"
+                text: 'Stopped'
                 pos_hint: {"center_x": .8, "center_y": .8}
                 height: 50
                 halign: "center"
@@ -85,32 +85,60 @@ class RootLay(FloatLayout):
 
     def __init__(self, **kwargs):
         super(RootLay, self).__init__(**kwargs)
-        self._running = True
+        self._running = False
+        self._check = False
         self.t = None
         self.t1 = None
 
     def terminate(self):
         self._running = False
 
-    def run(self, n):
+    def runit(self, n):
         while self._running and n > 0:
-            print('T-minus', n)
-            self.ids.message.text = n / 5 * 100 + '%'
+            self.ids.is_thread.text = 'Running..'
+            print('Counting seconds', n)
+            s = (5 - n) / 5 * 100
+            self.ids.message.text = str(s) + '%'
             n -= 1
             time.sleep(1)
+        s = (5 - n) / 5 * 100
+        self.ids.message.text = str(s) + '%'
         self.terminate()
+        self._check = False
+        if self.t1 is not None:
+            if self.t1.is_alive():
+                print('is alive')
+        print('not alive')
+        self.t1 = None
+        self.ids.is_thread.text = 'Stopped'
+    def run_check(self, n):
+        while self._check and n > 0:
+            if self.t1 is not None:
+                if self.t1.is_alive():
+                    print(' t1 is alive')
+                else:
+                    print(' t1 is dead')
+            time.sleep(1)
+        self._check = False
+        if self.t is not None:
+            if self.t.is_alive():
+                print('is alive')
+        print('not alive')
+        self.t = None
 
-    def start_thread(self):
-        self._running = True
+    def start_thread_one(self):
+        self._check = True
         if self.t is None:
-            self.t = threading.Thread(target=self.run, args=(5,))
+            self.t = threading.Thread(target=self.run_check, args=(5,))
             self.t.start()
 
     def start_thread(self):
         self._running = True
         if self.t1 is None:
-            self.t1 = threading.Thread(target=self.run, args=(5,))
+            self.t1 = threading.Thread(target=self.runit, args=(5,))
+            self.ids.is_thread.text = 'Starting..'
             self.t1.start()
+        self.start_thread_one()
     def on_checkbox_active(self, checkbox, value):
         if value:
             print(value, ' ', checkbox.active, 'The checkbox', checkbox, 'is active', 'and', checkbox.state, 'state')
