@@ -37,7 +37,7 @@ RootLay:
                 markup: True
             MDRectangleFlatIconButton:
                 text: "Run Thread"
-                icon: 'lan-disconnect'
+                icon: 'spider-thread'
                 pos_hint: {"center_x": .5, "center_y": .6}
                 on_release:
                     root.start_thread()
@@ -51,7 +51,7 @@ RootLay:
             MDRectangleFlatIconButton:
                 id: second
                 text: "Test"
-                icon: 'bluetooth-connect'
+                icon: 'test-tube'
                 pos_hint: {"center_x": .5, "center_y": .5}
                 on_release:
                     if root.ids.check_id.active and root.ids.switch_id.active: print("Both active")
